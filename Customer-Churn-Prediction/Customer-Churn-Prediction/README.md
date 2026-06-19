@@ -267,8 +267,3 @@ All project code is released under **MIT**.
 
 ---
 
-## 👤 Author
-
-**Senior Data Scientist**  
-*Customer Churn Forecasting Project*  
-*Suitable for: College Projects · Internships · Hackathons · Placement Assessments*
