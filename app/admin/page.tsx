@@ -143,9 +143,9 @@ export default function AdminPage() {
   }
 
   const total = stats?.total_predictions || 0;
-  const highPct = total > 0 ? Math.round(((stats?.high_risk_count || 0) / total) * 100) : 20;
-  const medPct = total > 0 ? Math.round(((stats?.medium_risk_count || 0) / total) * 100) : 25;
-  const lowPct = total > 0 ? Math.round(((stats?.low_risk_count || 0) / total) * 100) : 55;
+  const highPct = total > 0 ? Math.round(((stats?.high_risk_count || 0) / total) * 100) : 0;
+  const medPct = total > 0 ? Math.round(((stats?.medium_risk_count || 0) / total) * 100) : 0;
+  const lowPct = total > 0 ? Math.round(((stats?.low_risk_count || 0) / total) * 100) : 0;
 
   const filteredPredictions = stats?.recent_predictions.filter((p) =>
     (p.customer_id || p.CustomerID || "")

@@ -64,65 +64,17 @@ export async function GET(req: NextRequest) {
       });
     }
 
-    // Default baseline analytics if Supabase is not connected
+    // Authentic empty state when Supabase is not yet configured or no records exist
     return NextResponse.json({
-      total_predictions: 1420,
-      high_risk_count: 284,
-      medium_risk_count: 355,
-      low_risk_count: 781,
-      feedback_count: 48,
-      average_rating: 4.8,
-      recent_predictions: [
-        {
-          id: "mock-1",
-          customer_id: "CUST-9821",
-          churn_probability: 0.8389,
-          churn_prediction: "Churn",
-          risk_tier: "High Risk",
-          model_used: "xgboost",
-          contract: "Month-to-month",
-          tenure: 1,
-          monthly_charges: 95.65,
-          created_at: new Date(Date.now() - 1000 * 60 * 12).toISOString(),
-        },
-        {
-          id: "mock-2",
-          customer_id: "CUST-4102",
-          churn_probability: 0.0151,
-          churn_prediction: "No Churn",
-          risk_tier: "Low Risk",
-          model_used: "xgboost",
-          contract: "Two year",
-          tenure: 60,
-          monthly_charges: 65.0,
-          created_at: new Date(Date.now() - 1000 * 60 * 45).toISOString(),
-        },
-        {
-          id: "mock-3",
-          customer_id: "CUST-7719",
-          churn_probability: 0.521,
-          churn_prediction: "Churn",
-          risk_tier: "Medium Risk",
-          model_used: "xgboost",
-          contract: "One year",
-          tenure: 14,
-          monthly_charges: 78.4,
-          created_at: new Date(Date.now() - 1000 * 60 * 90).toISOString(),
-        },
-      ],
-      recent_feedbacks: [
-        {
-          id: "fb-1",
-          customer_id: "CUST-9821",
-          rating: 5,
-          is_useful: true,
-          churn_prediction: "Churn",
-          risk_tier: "High Risk",
-          comments: "Accurately flagged customer who was calling about billing cancel.",
-          created_at: new Date(Date.now() - 1000 * 60 * 10).toISOString(),
-        },
-      ],
-      source: "baseline_demo",
+      total_predictions: 0,
+      high_risk_count: 0,
+      medium_risk_count: 0,
+      low_risk_count: 0,
+      feedback_count: 0,
+      average_rating: 0,
+      recent_predictions: [],
+      recent_feedbacks: [],
+      source: "no_database_configured",
     });
   } catch (err: any) {
     console.error("Admin stats error:", err);

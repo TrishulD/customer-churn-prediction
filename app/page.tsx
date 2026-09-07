@@ -98,11 +98,11 @@ export default function HomePage() {
             <div className="flex items-center gap-2 text-amber-400">
               <TrendingUp className="h-5 w-5" />
               <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                Annual Impact
+                F1 Score
               </span>
             </div>
-            <p className="mt-2 text-3xl font-bold text-white">$92,400</p>
-            <p className="mt-1 text-xs text-slate-400">Net protected revenue</p>
+            <p className="mt-2 text-3xl font-bold text-white">0.634</p>
+            <p className="mt-1 text-xs text-slate-400">Precision-recall balance</p>
           </div>
         </div>
       </section>

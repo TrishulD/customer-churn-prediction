@@ -25,7 +25,7 @@ Customer churn costs the telecommunications industry an estimated **$62 billion 
 
 - **Predicts** customer churn probability with high precision and discriminative power (**0.868 ROC-AUC**).
 - **Explains** root causes using true empirical tree feature importances (e.g. month-to-month contracts, lack of security add-ons, price sensitivity).
-- **Quantifies** monthly revenue at risk and estimated return on retention investment (**$92,400 net protected revenue/yr**).
+- **Segments** subscribers into calibrated risk tiers (Low Risk <30%, Medium Risk 30–60%, High Risk >60%).
 - **Prescribes** personalized retention playbooks (e.g., annual contract upgrades, "Value Shield" bundles, VIP onboarding).
 - **Exports** executive-ready, client-side **PDF Assessment Reports** with zero server overhead.
 

@@ -169,34 +169,40 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Business Revenue Impact */}
-      <section className="mt-10 rounded-2xl border border-emerald-500/30 bg-emerald-950/10 p-6 sm:p-8">
-        <div className="flex items-center gap-3 text-emerald-400">
-          <TrendingUp className="h-6 w-6" />
-          <h2 className="text-xl font-bold text-white">4. Commercial Impact & ROI Economics</h2>
+      {/* Empirical Risk Segmentation */}
+      <section className="mt-10 rounded-2xl border border-blue-500/30 bg-slate-900/50 p-6 sm:p-8">
+        <div className="flex items-center gap-3 text-blue-400">
+          <Layers className="h-6 w-6" />
+          <h2 className="text-xl font-bold text-white">4. Empirical Risk Segmentation (Held-Out Test Set)</h2>
         </div>
         <p className="mt-3 text-sm leading-relaxed text-slate-300">
-          Based on an Average Revenue Per User (ARPU) of $65/month and a targeted retention
-          intervention cost of $10 per customer:
+          Evaluated on 1,409 held-out customers from the IBM Telco benchmark dataset.
+          Subscribers are segmented into three operational risk tiers based on model-calibrated churn probability:
         </p>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-3">
-          <div className="rounded-xl border border-slate-800 bg-slate-950 p-4">
-            <span className="text-xs text-slate-400">Monthly Revenue at Risk</span>
-            <p className="mt-1 text-2xl font-bold text-rose-400">~$9,100 / mo</p>
-            <span className="text-[11px] text-slate-500">In the ~20% high-risk tier</span>
+          <div className="rounded-xl border border-emerald-500/20 bg-emerald-950/20 p-4">
+            <span className="text-xs font-semibold uppercase text-emerald-400">Low Risk Tier (&lt;30%)</span>
+            <p className="mt-1 text-2xl font-bold text-white">~55%</p>
+            <p className="mt-1 text-xs text-slate-400">
+              Subscribers with long tenure, annual or two-year contracts, and bundled security services.
+            </p>
           </div>
 
-          <div className="rounded-xl border border-slate-800 bg-slate-950 p-4">
-            <span className="text-xs text-slate-400">Retention Campaign Cost</span>
-            <p className="mt-1 text-2xl font-bold text-slate-300">~$1,400 / mo</p>
-            <span className="text-[11px] text-slate-500">At $10 per intervention</span>
+          <div className="rounded-xl border border-amber-500/20 bg-amber-950/20 p-4">
+            <span className="text-xs font-semibold uppercase text-amber-400">Medium Risk Tier (30–60%)</span>
+            <p className="mt-1 text-2xl font-bold text-white">~25%</p>
+            <p className="mt-1 text-xs text-slate-400">
+              Customers showing early churn indicators such as paperless billing and single service add-ons.
+            </p>
           </div>
 
-          <div className="rounded-xl border border-slate-800 bg-slate-950 p-4">
-            <span className="text-xs text-slate-400">Net Annual Protected Revenue</span>
-            <p className="mt-1 text-2xl font-bold text-emerald-400">$92,400 / yr</p>
-            <span className="text-[11px] text-emerald-400/60">Estimated bottom-line lift</span>
+          <div className="rounded-xl border border-rose-500/20 bg-rose-950/20 p-4">
+            <span className="text-xs font-semibold uppercase text-rose-400">High Risk Tier (&gt;60%)</span>
+            <p className="mt-1 text-2xl font-bold text-white">~20%</p>
+            <p className="mt-1 text-xs text-slate-400">
+              Critical attrition risk: short tenure, month-to-month contract, and electronic check payments.
+            </p>
           </div>
         </div>
 
@@ -205,7 +211,7 @@ export default function AboutPage() {
             href="/predict"
             className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 hover:bg-blue-500"
           >
-            <span>Run Prediction on a Customer</span>
+            <span>Score a Customer in the Predictor</span>
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
