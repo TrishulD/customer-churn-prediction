@@ -67,7 +67,10 @@ def engineer_features(df: pd.DataFrame) -> pd.DataFrame:
 
     # ── Flags ───────────────────────────────────────────────────────────────
     df["has_multiple_services"] = (df["service_count"] >= 3).astype(int)
-    high_val_threshold = df["MonthlyCharges"].quantile(0.75)
+    if len(df) > 10 and df["MonthlyCharges"].nunique() > 1:
+        high_val_threshold = df["MonthlyCharges"].quantile(0.75)
+    else:
+        high_val_threshold = 89.85  # Benchmark 75th percentile of IBM Telco training set
     df["is_high_value"] = (df["MonthlyCharges"] >= high_val_threshold).astype(int)
 
     # ── Contract risk score (Month-to-month × Paperless Billing) ───────────

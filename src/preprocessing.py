@@ -111,24 +111,30 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
 
     # Impute TotalCharges NaN with median (new customers with 0 tenure)
     median_tc = df["TotalCharges"].median()
-    df["TotalCharges"].fillna(median_tc, inplace=True)
+    if pd.isna(median_tc):
+        median_tc = 0.0
+    df["TotalCharges"] = df["TotalCharges"].fillna(median_tc)
 
     # ── Outlier handling (IQR capping for numeric cols) ────────────────────
     num_cols = ["tenure", "MonthlyCharges", "TotalCharges"]
     for col in num_cols:
-        Q1, Q3 = df[col].quantile([0.25, 0.75])
-        IQR = Q3 - Q1
-        lower, upper = Q1 - 1.5 * IQR, Q3 + 1.5 * IQR
-        n_out = ((df[col] < lower) | (df[col] > upper)).sum()
-        if n_out:
-            df[col] = df[col].clip(lower, upper)
-            print(f"[INFO] Capped {n_out} outliers in '{col}'")
+        if col in df.columns:
+            Q1, Q3 = df[col].quantile([0.25, 0.75])
+            IQR = Q3 - Q1
+            if IQR > 0:
+                lower, upper = Q1 - 1.5 * IQR, Q3 + 1.5 * IQR
+                n_out = ((df[col] < lower) | (df[col] > upper)).sum()
+                if n_out:
+                    df[col] = df[col].clip(lower, upper)
+                    print(f"[INFO] Capped {n_out} outliers in '{col}'")
 
-    # Encode target → binary integer
-    df[TARGET_COL] = df[TARGET_COL].map({"Yes": 1, "No": 0})
-
-    print(f"\n[INFO] Cleaned shape  : {df.shape}")
-    print(f"[INFO] Churn rate     : {df[TARGET_COL].mean():.2%}")
+    # Encode target → binary integer (if present)
+    if TARGET_COL in df.columns:
+        df[TARGET_COL] = df[TARGET_COL].map({"Yes": 1, "No": 0})
+        print(f"\n[INFO] Cleaned shape  : {df.shape}")
+        print(f"[INFO] Churn rate     : {df[TARGET_COL].mean():.2%}")
+    else:
+        print(f"\n[INFO] Cleaned shape  : {df.shape} (Inference mode, no target)")
     return df
 
 
