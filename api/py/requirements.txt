@@ -1,11 +1,11 @@
-# Python inference dependencies for Vercel serverless function (api/py/index.py)
-# Matches verified production runtime environment and re-serialized model artifacts.
-# Training-only packages (matplotlib, seaborn, imbalanced-learn, openpyxl, requests)
-# are intentionally excluded to minimize bundle size and stay under Vercel's limits.
+# Python runtime ML dependencies for Vercel serverless function (api/py/index.py)
+# Uses xgboost==2.1.3 to eliminate the 240MB+ Linux CUDA/NCCL dependency (nvidia-nccl-cu13)
+# while preserving exact model inference and JSON compatibility.
+# Excludes all training-only packages (matplotlib, seaborn, imbalanced-learn, openpyxl, requests).
 
 fastapi>=0.110.0
-numpy==2.3.3
-pandas==2.3.2
+numpy>=1.26.3,<3.0.0
+pandas>=2.1.4,<3.0.0
 scikit-learn==1.7.2
-xgboost==3.4.1
-joblib==1.5.2
+xgboost==2.1.3
+joblib>=1.3.2

@@ -1,0 +1,32 @@
+# Version control & environments
+.git
+.github
+.env*.local
+
+# Dependencies & Build artifacts (generated on Vercel build servers)
+node_modules
+.next
+out
+build
+dist
+
+# Python caches & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+
+# Training data, analysis reports & exploratory notebooks
+data/
+reports/
+notebooks/
+supabase/
+
+# Local tests & logs
+test_*.py
+*.log

@@ -3,7 +3,7 @@
   "functions": {
     "api/py/index.py": {
       "maxDuration": 60,
-      "includeFiles": "models/**"
+      "includeFiles": "models/{xgboost.json,random_forest.pkl,logistic_regression.pkl,scaler.pkl,trained_columns.txt}"
     }
   },
   "rewrites": [
