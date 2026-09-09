@@ -198,7 +198,7 @@ def predict_single(customer: CustomerInput, model_name: str = Query("xgboost")):
             )
 
     model = MODELS[model_key]
-    data_dict = customer.dict()
+    data_dict = customer.model_dump() if hasattr(customer, "model_dump") else customer.dict()
 
     # Calculate TotalCharges default if omitted
     if data_dict.get("TotalCharges") is None:

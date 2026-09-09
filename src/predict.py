@@ -48,7 +48,19 @@ TOP_CHURN_DRIVERS_INFO = [
 
 def load_model(model_name: str = "xgboost"):
     """Load a persisted estimator from models/."""
-    fname = model_name.lower().replace(" ", "_") + ".pkl"
+    key = model_name.lower().replace(" ", "_")
+    # Prefer XGBoost native JSON format for stable cross-version serialization
+    if key == "xgboost":
+        for candidate in ["xgboost.json", "xgboost_model.json"]:
+            json_path = os.path.join(MODELS_DIR, candidate)
+            if os.path.exists(json_path):
+                import xgboost as xgb
+                model = xgb.XGBClassifier()
+                model.load_model(json_path)
+                print(f"[LOADED] {model_name} <- {json_path} (native JSON format)")
+                return model
+
+    fname = key + ".pkl"
     path = os.path.join(MODELS_DIR, fname)
     if not os.path.exists(path):
         available = [f.replace(".pkl", "") for f in os.listdir(MODELS_DIR) if f.endswith(".pkl")]

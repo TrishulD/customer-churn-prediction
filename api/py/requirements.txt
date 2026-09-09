@@ -1,0 +1,11 @@
+# Python inference dependencies for Vercel serverless function (api/py/index.py)
+# Matches verified production runtime environment and re-serialized model artifacts.
+# Training-only packages (matplotlib, seaborn, imbalanced-learn, openpyxl, requests)
+# are intentionally excluded to minimize bundle size and stay under Vercel's limits.
+
+fastapi>=0.110.0
+numpy==2.3.3
+pandas==2.3.2
+scikit-learn==1.7.2
+xgboost==3.4.1
+joblib==1.5.2

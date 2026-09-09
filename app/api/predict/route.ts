@@ -8,8 +8,14 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const modelName = req.nextUrl.searchParams.get("model") || "xgboost";
 
-    // Query the real Python ML inference microservice
-    const mlUrl = process.env.ML_INFERENCE_URL || "http://127.0.0.1:8000";
+    // Resolve ML inference URL:
+    //   1. ML_INFERENCE_URL env var (explicit override — highest priority)
+    //   2. VERCEL_URL (auto-injected by Vercel on every deployment)
+    //   3. Localhost (local development fallback)
+    const vercelUrl = process.env.VERCEL_URL;
+    const mlUrl =
+      process.env.ML_INFERENCE_URL ||
+      (vercelUrl ? `https://${vercelUrl}/api/py` : "http://127.0.0.1:8000");
     let predictionResult = null;
 
     try {
